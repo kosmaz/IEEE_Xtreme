@@ -1,0 +1,19 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+
+
+void Run()
+{
+    int
+    return;
+}
+
+
+int main()
+{
+    Run();
+    return 0;
+}

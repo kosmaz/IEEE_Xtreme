@@ -1,0 +1,63 @@
+#include <iostream>
+#include <vector>
+#include <map>
+#include <algorithm>
+using namespace std;
+
+struct time
+{
+    time();
+    time(int b,int p):value(b),pos(p){}
+    int value,pos;
+};
+
+bool compare(time t1,time t2){return (t1.value<t2.value);}
+
+int max(vector<int> amounts,vector<time> starts,vector<int> ends)
+{
+    int max=0;
+    int oldmax=0;
+    sort(starts.begin(),starts.end(),compare);
+
+    for(int i=starts.begin()->value; i<=48; )
+    {
+        oldmax+=amounts.at(starts.at(i).pos);
+        i=ends.at(starts.at(i).pos);
+    }
+    return max;
+}
+
+void Run()
+{
+    vector<int> max_revenue;
+    int t=0;
+    cin>>t;
+    for(int i=0; i<t; ++i)
+    {
+        vector<int> amounts;
+        vector<time> starts;
+        vector<int> ends;
+        int N=0;
+        cin>>N;
+        for(int j=0; j<N; ++j)
+        {
+            int Bs,Be,A;
+            cin>>Bs>>Be>>A;
+            starts.push_back(time(Bs,j));
+            ends.push_back(Be);
+            amounts.push_back(A);
+        }
+        max_revenue.push_back(max(amounts,starts,ends));
+    }
+
+    for(int k=0; k<t; ++k)
+        cout<<max_revenue.at(k)<<endl;
+    return;
+}
+
+
+int main()
+{
+    Run();
+    return 0;
+}
